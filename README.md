@@ -8,4 +8,4 @@ In this project "Cannon Game" I will expand the existing game with the following
 6. Create a GAME OVER screen.  FIN
 7. Hitting a black target also results in losing a life.  FIN
 8. Hitting a yellow target grants a extra life.  FIN
-9. Visualize a real cannon.
+9. Visualize a real cannon.  FIN
