@@ -1,1 +1,32 @@
-First change I have made in my project was the 
+-------------------------------
+Changelog of the cannon project
+-------------------------------
+
+1. The first change I have made in my project was the varied gravitational effect:
+...
+ if inside(ball):
+        speed.y -= 0.30     # invert the gravitation effect by adding a "-"
+        ball.move(speed)
+
+
+2. The second point was the adjusted speed of the red ball:
+...
+ draw()
+    ontimer(move, 20)   # you can change the speed from 1 (very fast) to 50 (very slow)
+
+
+3. The third change was the implemented score board, which encreases if a target gets hit:
+
+# prints the score on the screen
+score = 0  # Starting with a score of 0
+...
+goto(-200, 185)
+    write(f"Score: {score} | Lives: {lives}", align="left", font=("Arial", 16, "normal"))
+...
+for target in dupe:
+        if abs(target - ball) > 13:
+            targets.append(target)
+                score += 1  # Increment score when any other target disappears
+
+
+4. The fourth 

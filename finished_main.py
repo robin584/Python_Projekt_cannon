@@ -114,10 +114,10 @@ def move():
         targets.append(target)
 
     for target in targets:
-        target.x -= randrange(1, 2)  # Vary gravitational effect by adjusting the speed
+        target.x -= randrange(1, 2)  # Vary gravitational effect by adjusting the speed of the targets
 
     if inside(ball):
-        speed.y += 0.30
+        speed.y -= 0.30     # invert the gravitation effect
         ball.move(speed)
 
     dupe = targets.copy()
