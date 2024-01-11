@@ -108,7 +108,7 @@ def move():
             game_over = True
             draw()
 
-    ontimer(move, 20)
+    ontimer(move, 5)
 
 def main():
     setup(420, 420, 370, 0)

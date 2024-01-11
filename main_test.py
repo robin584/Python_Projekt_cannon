@@ -4,11 +4,41 @@ from vector_function import vector
 
 ball = vector(-200, -200)
 speed = vector(0, 0)
-objects = []  # Renamed from 'targets' to 'objects'
-score = 0
+targets = []
+
+
+# Create cannon components
+cannon = Turtle()
+cannon.shape("square")
+cannon.shapesize(1, 5)
+cannon.color("black")
+cannon.up()
+
+ground = Turtle()
+ground.shape("circle")
+ground.shapesize(2)
+ground.color("black")
+ground.up()
+
+arrow = Turtle()
+arrow.shape("arrow")
+arrow.shapesize(1)
+arrow.color("red")
+arrow.up()
+
+
 
 def tap(x, y):
-    """Respond to screen tap."""
+
+    cannon.goto(-195, -195)
+    cannon.setheading(cannon.towards(x,y))
+    
+    ground.goto(-195, -195)
+    ground.setheading(ground.towards(x,y))
+
+    arrow.goto(-195, -195)
+    arrow.setheading(arrow.towards(x,y))
+
     if not inside(ball):
         ball.x = -199
         ball.y = -199
@@ -20,74 +50,51 @@ def inside(xy):
     return -200 < xy.x < 200 and -200 < xy.y < 200
 
 def draw():
-    """Draw ball and objects."""
+    """Draw ball, targets, and cannon."""
     clear()
 
-    for obj in objects:
-        goto(obj.x, obj.y)
-        if obj.is_green:
-            draw_rectangle(20, 20, 'green')  # Draw green square
-        else:
-            dot(20, 'blue')  # Draw blue dot
+    for target in targets:
+        goto(target.x, target.y)
+        dot(20, 'blue')
 
     if inside(ball):
         goto(ball.x, ball.y)
-        dot(6, 'red')  # Draw red ball
-
-    # Display the score
-    goto(-190, 190)
-    write(f"Score: {score}", align="left", font=("Courier", 16, "normal"))
+        dot(6, 'red')
 
     update()
 
-def draw_rectangle(width, height, color):
-    """Draw a rectangle at the current turtle position."""
-    fillcolor(color)
-    begin_fill()
-    for _ in range(4):
-        forward(width if _ % 2 == 0 else height)
-        right(90)
-    end_fill()
+    # Update cannon position based on the mouse cursor
+
+   
 
 def move():
-    """Move ball and objects."""
-    global score
-
+    """Move ball and targets."""
     if randrange(40) == 0:
         y = randrange(-150, 150)
-        obj = vector(200, y)
-        obj.is_green = randrange(2) == 1  # Randomly set green target
-        objects.append(obj)
+        target = vector(200, y)
+        targets.append(target)
 
-    for obj in objects:
-        obj.x -= 0.5
-
-        # Check if the ball hits an object
-        if inside(ball) and abs(obj - ball) <= 13:
-            if obj.is_green:
-                score += 2  # Score 2 points for hitting a green target
-            else:
-                objects.remove(obj)
-                score += 1
+    for target in targets:
+        target.x -= 0.5
 
     if inside(ball):
         speed.y -= 0.35
         ball.move(speed)
 
-    dupe = objects.copy()
-    objects.clear()
+    dupe = targets.copy()
+    targets.clear()
 
-    for obj in dupe:
-        if abs(obj - ball) > 13:
-            objects.append(obj)
+    for target in dupe:
+        if abs(target - ball) > 13:
+            targets.append(target)
 
     draw()
 
-    for obj in objects:
-        if not inside(obj):
+    for target in targets:
+        if not inside(target):
             return
 
-    ontimer(move, 50)
+    ontimer(move, 10)
 
 setup(420, 420, 370, 0)
 hideturtle()
@@ -96,4 +103,3 @@ tracer(False)
 onscreenclick(tap)
 move()
 done()
-
