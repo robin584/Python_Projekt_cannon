@@ -1,19 +1,3 @@
-"""Cannon, hitting targets with projectiles.
-
-
-
-1. Keep score by counting target hits.
-2. Vary the gravitational effect.
-3. Apply gravity to the targets.
-4. Adjust the speed of the ball.
-5. Losing a life occurs when the target hits the left wall.
-6. Hitting a black target also results in losing a life.
-7. Hitting a yellow target grants a power-up.
-8. Implement a life counter.
-9. Visualize a real cannon.
-10. Change the target (ball) into a balloon.
-"""
-
 from random import randrange
 from turtle import *
 from vector_function import vector
