@@ -1,0 +1,10 @@
+# Changelog of the Cannon Project
+
+## Version 1.0
+
+### Change 1
+- Varied gravitational effect:
+  ```python
+  if inside(ball):
+      speed.y -= 0.30     # Invert the gravitation effect by adding a "-"
+      ball.move(speed)
