@@ -117,7 +117,7 @@ def move():
         target.x -= randrange(1, 2)  # Vary gravitational effect by adjusting the speed of the targets
 
     if inside(ball):
-        speed.y -= 0.30     # invert the gravitation effect
+        speed.y += 0.30     # invert the gravitation effect
         ball.move(speed)
 
     dupe = targets.copy()
@@ -138,8 +138,9 @@ def move():
     for target in targets:
         if not inside(target):
             game_over = True
-            if target.color != 'yellow':
+            if target.color != 'black':
                 lives -= 1
+           
 
     draw()
     ontimer(move, 20)
