@@ -139,7 +139,7 @@ def move():
         if not inside(target):
             game_over = True
             if target.color != 'black':
-                lives -= 1
+              lives -= 1
            
 
     draw()
